@@ -53,15 +53,23 @@ void rt_hw_board_init() {
 }
 
 int main() {
+  // printf("begin ioe_init!\n");
   ioe_init();
+  // printf("finish ioe_init!\n");
 #ifdef __ISA_NATIVE__
   // trigger the real initialization of IOE to
   // perform SDL initialization int this main thread with large stack
+  // printf("begin io_read!\n");
   io_read(AM_TIMER_CONFIG);
+  // printf("finish io_read!\n");
 #endif
   extern void __am_cte_init();
+  // printf("begin __am_cte_init!\n");
   __am_cte_init();
+  // printf("finish __am_cte_init!\n");
   extern int entry(void);
+  // printf("Enter entry!\n");
   entry();
+  // printf("Return entry!\n");
   return 0;
 }
